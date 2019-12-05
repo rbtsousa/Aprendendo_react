@@ -22,4 +22,5 @@
    
    6 - Default Props & PropsTypes
    
-															          7 - Ciclo de vida de componentes
+   
+   7 - Ciclo de vida de componentes
