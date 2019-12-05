@@ -7,7 +7,29 @@ class TechList extends Component {
     // newTech e a variavel que vai receber o valor digitado pelo usuário
     // variaveis de estado nao podem receber mutações
     newTech: "",
-    tech: ["NodeJs", "React", "ReactNative"]
+    tech: [ ]
+  };
+
+//DidMount e executando assim que um componente e executado na tela
+// nesse exemplo, ele fez uma requisição dentro do local storage e se for "true"
+// ele da reload na tela  
+componentDidMount() {
+    const techs = localStorage.getItem('techs');
+    if (techs) {
+      this.setState ({tech: JSON.parse(techs)})
+    };
+
+  };
+  // é executado sempre que houver alterações nas props (propriedades) ou estado
+  //Foi usado o localstorage para armazenar os dados do formulário
+  componentDidUpdate(_, prevState) {
+    if (prevState !== this.state.tech){
+        localStorage.setItem('techs', JSON.stringify(this.state.tech))
+    };
+  };
+// é executado quando o componente deixa de existir
+  componentWillUnmount() {
+
   };
   // novo método é uma 'aerofunction',
   // e usado quando voce precisa ter acesso ao this
@@ -39,7 +61,14 @@ class TechList extends Component {
       //onSubmit método usado para enviar os dados do input
       <form onSubmit={this.handleSubmit}>
         <ul>
-          {this.state.tech.map(tech => <TechItem key={tech}  tech ={tech}  onDelet={() => this.handleDelet(tech)}/>  )}
+          {this.state.tech.map(tech => (
+          <TechItem 
+          key={tech}  
+          tech ={tech} 
+          onDelet={() => this.handleDelet(tech)}
+          />  
+         ))}
+        
         </ul>
         <input
           type="text"

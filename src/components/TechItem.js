@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 function TechItem( {tech, onDelet } ) {
@@ -9,5 +10,15 @@ function TechItem( {tech, onDelet } ) {
 </li>
   );
 }
-
+// Default props
+TechItem.defaultProps = {
+  // tech: 'Oculto',
+};
+// propriedade importante para trabalho com varios devs
+// com essa propriedade e retornado um erro e o dev ja consegue ver esse erro
+TechItem.propTypes = {
+  tech: PropTypes.string,
+  
+  
+};
 export default TechItem;
